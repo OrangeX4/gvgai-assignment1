@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import core.game.Event;
 import core.game.GameDescription.SpriteData;
@@ -474,7 +475,7 @@ public class Chromosome implements Comparable<Chromosome>{
 	private boolean isPlayerCauseDeath(){
 		for(TerminationData t:SharedData.gameDescription.getTerminationConditions()){
 			for(String s:t.sprites){
-				if(!t.win & SharedData.gameDescription.getAvatar().contains(s)){
+				if(!t.win & SharedData.gameDescription.getAvatar().stream().map((sprite) -> sprite.name).collect(Collectors.toList()).contains(s)){
 					return true;
 				}
 			}
