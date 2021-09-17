@@ -2,7 +2,11 @@ package controllers.depthfirst;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 
 import core.game.Observation;
 import core.game.StateObservation;
@@ -34,6 +38,7 @@ public class Agent extends AbstractPlayer {
      */
     protected int block_size;
 
+    private Set<StateObservation> stateObservationsSet = new HashSet<>();
 
     /**
      * Public constructor with state observation and time due.
@@ -98,6 +103,16 @@ public class Agent extends AbstractPlayer {
             //System.out.println(elapsedTimerIteration.elapsedMillis() + " --> " + acumTimeTaken + " (" + remaining + ")");
             avgTimeTaken  = acumTimeTaken/numIters;
             remaining = elapsedTimer.remainingTimeMillis();
+
+            // Fast because of HashSet
+            if (stateObservationsSet.contains(stCopy)) {
+                if (count % 5000 == 0) {
+                    System.out.println("Set: true" + "Length: " + stateObservationsSet.size());
+                }
+            } else {
+                stateObservationsSet.add(stCopy.copy());
+            }
+
         }
 
         return action;

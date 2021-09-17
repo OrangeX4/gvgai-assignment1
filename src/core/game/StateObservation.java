@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -534,6 +535,22 @@ public class StateObservation {
 
         //Check observations:
         return this.model.equalObservations(other.model);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return equalPosition(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.getGameWinner(), 
+            this.isGameOver(),
+            this.getAvatarSpeed(),
+            this.getAvatarPosition(),
+            this.getAvatarResources(),
+            this.model);
     }
 
 }

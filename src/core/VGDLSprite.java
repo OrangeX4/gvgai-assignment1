@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
@@ -879,6 +880,35 @@ public abstract class VGDLSprite {
             if(other.itypes.get(i) != this.itypes.get(i)) return false;
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.name,
+            this.is_static,
+            this.only_active,
+            this.is_avatar,
+            this.is_stochastic,
+            this.cooldown,
+            this.speed,
+            this.mass,
+            this.physicstype_id,
+            this.shrinkfactor,
+            this.is_oriented,
+            this.strength,
+            this.singleton,
+            this.is_resource,
+            this.portal,
+            this.is_npc,
+            this.is_from_avatar,
+            this.invisible,
+            this.spriteID,
+            this.hidden,
+            this.itypes,
+            this.orientation,
+            this.rect
+        );
     }
 
     /**
