@@ -94,8 +94,8 @@ public class Agent extends AbstractPlayer {
         double acumTimeTaken = 0;
         long remaining = elapsedTimer.remainingTimeMillis();
         int numIters = 0;
-
         int remainingLimit = 5;
+
         while (remaining > 2 * avgTimeTaken && remaining > remainingLimit) {
             ElapsedCpuTimer elapsedTimerIteration = new ElapsedCpuTimer();
 

@@ -550,7 +550,7 @@ public class StateObservation {
             this.getAvatarSpeed(),
             this.getAvatarPosition(),
             this.getAvatarResources(),
-            this.model);
+            this.model
+        );
     }
-
 }

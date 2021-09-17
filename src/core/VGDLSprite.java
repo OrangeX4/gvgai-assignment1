@@ -882,6 +882,14 @@ public abstract class VGDLSprite {
         return true;
     }
 
+    /**
+     * Get all sprites that affect or being affected by the current sprite
+     * @return a list of all dependent sprites
+     */
+    public ArrayList<String> getDependentSprites(){
+    	return new ArrayList<String>();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(
@@ -910,13 +918,4 @@ public abstract class VGDLSprite {
             this.rect
         );
     }
-
-    /**
-     * Get all sprites that affect or being affected by the current sprite
-     * @return a list of all dependent sprites
-     */
-    public ArrayList<String> getDependentSprites(){
-    	return new ArrayList<String>();
-    }
-    
 }
