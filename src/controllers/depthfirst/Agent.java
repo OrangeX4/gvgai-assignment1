@@ -110,7 +110,7 @@ public class Agent extends AbstractPlayer {
             Node node = fringe.get(index);
 
             // 胜利的相关的处理
-            if (node.stObs.isGameOver() && node.stObs.getGameWinner() != Types.WINNER.NO_WINNER) {
+            if (node.stObs.isGameOver() && node.stObs.getGameWinner() == Types.WINNER.PLAYER_WINS) {
                 Node current = node;
                 while (current.parent != -1) {
                     // 循环加入可行的行动

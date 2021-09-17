@@ -28,8 +28,8 @@ public class Assignment1 {
         
         
         /****** Task 1 ******/
-        CompetitionParameters.ACTION_TIME = 10; // set to the time that allow you to do the depth first search
-        ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl0.txt", visuals, depthfirstController, null, seed, false);
+        CompetitionParameters.ACTION_TIME = 50; // set to the time that allow you to do the depth first search
+        ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl1.txt", visuals, depthfirstController, null, seed, false);
         
         
         // /****** Task 2 ******/
