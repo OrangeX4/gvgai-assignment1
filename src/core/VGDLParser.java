@@ -1,6 +1,6 @@
 package core;
 
-import java.awt.Dimension;
+// import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,17 +12,17 @@ import core.content.MappingContent;
 import core.content.SpriteContent;
 import core.content.TerminationContent;
 import core.game.Game;
-import core.game.GameDescription;
-import core.game.GameDescription.InteractionData;
-import core.game.GameDescription.SpriteData;
-import core.game.GameDescription.TerminationData;
+// import core.game.GameDescription;
+// import core.game.GameDescription.InteractionData;
+// import core.game.GameDescription.SpriteData;
+// import core.game.GameDescription.TerminationData;
 import core.termination.Termination;
 import ontology.Types;
 import ontology.effects.Effect;
 import ontology.effects.TimeEffect;
 import tools.IO;
 import tools.Pair;
-import tools.Vector2d;
+// import tools.Vector2d;
 
 /**
  * Created with IntelliJ IDEA.

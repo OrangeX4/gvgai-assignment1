@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import core.VGDLFactory;
 import core.VGDLRegistry;
 import core.VGDLSprite;
-import core.competition.CompetitionParameters;
+// import core.competition.CompetitionParameters;
 import core.content.GameContent;
 import tools.IO;
 import tools.Vector2d;

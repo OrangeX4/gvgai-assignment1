@@ -27,7 +27,7 @@ import ontology.avatar.MovingAvatar;
 import ontology.effects.Effect;
 import ontology.effects.TimeEffect;
 import ontology.sprites.Resource;
-import tools.IO;
+// import tools.IO;
 import tools.JEasyFrame;
 import tools.KeyHandler;
 import tools.KeyInput;

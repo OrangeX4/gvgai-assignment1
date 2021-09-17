@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import core.VGDLFactory;
 import core.content.TerminationContent;
 import core.game.Game;
-import core.game.GameDescription;
-import ontology.Types;
+// import core.game.GameDescription;
+// import ontology.Types;
 /**
  * Created with IntelliJ IDEA.
  * User: Diego

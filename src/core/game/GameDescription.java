@@ -2,14 +2,10 @@ package core.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import core.VGDLRegistry;
-import core.termination.Termination;
 import ontology.Types;
 import ontology.avatar.MovingAvatar;
-import ontology.effects.Effect;
 
 /**
  * This is an abstract class encapsulating all the data required for generating

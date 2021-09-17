@@ -1,8 +1,8 @@
 package core.competition;
 
-import java.util.Random;
+// import java.util.Random;
 
-import core.ArcadeMachine;
+// import core.ArcadeMachine;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,9 +24,9 @@ public class AgentExecutor {
         System.out.println("Player Class: " + playerClassString);
         System.out.println("Agent Action file: " + action_file );
 
-        int seed = new Random().nextInt();
+        // int seed = new Random().nextInt();
 
-        double gameScore = ArcadeMachine.runOneGame(map, level, false, playerClassString, action_file, seed, false);
+        // double gameScore = ArcadeMachine.runOneGame(map, level, false, playerClassString, action_file, seed, false);
         //System.out.println(gameScore);
     }
 }

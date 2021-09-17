@@ -3,8 +3,6 @@ package controllers.depthfirst;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
@@ -62,11 +60,11 @@ public class Agent extends AbstractPlayer {
      */
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
-        ArrayList<Observation>[] npcPositions = stateObs.getNPCPositions();
-        ArrayList<Observation>[] fixedPositions = stateObs.getImmovablePositions();
-        ArrayList<Observation>[] movingPositions = stateObs.getMovablePositions();
-        ArrayList<Observation>[] resourcesPositions = stateObs.getResourcesPositions();
-        ArrayList<Observation>[] portalPositions = stateObs.getPortalsPositions();
+        // ArrayList<Observation>[] npcPositions = stateObs.getNPCPositions();
+        // ArrayList<Observation>[] fixedPositions = stateObs.getImmovablePositions();
+        // ArrayList<Observation>[] movingPositions = stateObs.getMovablePositions();
+        // ArrayList<Observation>[] resourcesPositions = stateObs.getResourcesPositions();
+        // ArrayList<Observation>[] portalPositions = stateObs.getPortalsPositions();
         grid = stateObs.getObservationGrid();
 
         /*printDebug(npcPositions,"npc");
@@ -106,9 +104,7 @@ public class Agent extends AbstractPlayer {
 
             // Fast because of HashSet
             if (stateObservationsSet.contains(stCopy)) {
-                if (count % 5000 == 0) {
-                    System.out.println("Set: true" + "Length: " + stateObservationsSet.size());
-                }
+                // TODO: if contains
             } else {
                 stateObservationsSet.add(stCopy.copy());
             }
@@ -124,7 +120,7 @@ public class Agent extends AbstractPlayer {
      * @param positions array with observations.
      * @param str identifier to print
      */
-    private void printDebug(ArrayList<Observation>[] positions, String str)
+    public void printDebug(ArrayList<Observation>[] positions, String str)
     {
         if(positions != null){
             System.out.print(str + ":" + positions.length + "(");

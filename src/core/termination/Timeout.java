@@ -1,10 +1,10 @@
 package core.termination;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 import core.content.TerminationContent;
 import core.game.Game;
-import core.game.GameDescription.TerminationData;
+// import core.game.GameDescription.TerminationData;
 
 /**
  * Created with IntelliJ IDEA.

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import core.VGDLRegistry;
 import core.content.TerminationContent;
 import core.game.Game;
-import core.game.GameDescription.TerminationData;
+// import core.game.GameDescription.TerminationData;
 
 /**
  * Created with IntelliJ IDEA.

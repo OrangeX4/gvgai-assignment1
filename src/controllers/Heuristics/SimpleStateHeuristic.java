@@ -1,7 +1,7 @@
 package controllers.Heuristics;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+// import java.util.HashMap;
 
 import core.game.Observation;
 import core.game.StateObservation;
@@ -27,9 +27,9 @@ public class SimpleStateHeuristic extends StateHeuristic {
         Vector2d avatarPosition = stateObs.getAvatarPosition();
         ArrayList<Observation>[] npcPositions = stateObs.getNPCPositions(avatarPosition);
         ArrayList<Observation>[] portalPositions = stateObs.getPortalsPositions(avatarPosition);
-        HashMap<Integer, Integer> resources = stateObs.getAvatarResources();
+        // HashMap<Integer, Integer> resources = stateObs.getAvatarResources();
 
-        ArrayList<Observation>[] npcPositionsNotSorted = stateObs.getNPCPositions();
+        // ArrayList<Observation>[] npcPositionsNotSorted = stateObs.getNPCPositions();
 
         double won = 0;
         if (stateObs.getGameWinner() == Types.WINNER.PLAYER_WINS) {
