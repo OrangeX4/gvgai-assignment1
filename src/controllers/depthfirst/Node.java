@@ -11,6 +11,7 @@ public class Node {
 
     // 在 fringe 中的索引
     public int parent = -1;
+    public int child = -1;
 
     Node(StateObservation stObs, Types.ACTIONS action, int parent) {
         this.stObs = stObs;

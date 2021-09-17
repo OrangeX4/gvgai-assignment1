@@ -42,8 +42,9 @@ public class Agent extends AbstractPlayer {
     // 用于保存搜索到的解答, 根据局面获取步骤
     private Map<StateObservation, Types.ACTIONS> stObs2Actions = new HashMap<>();
 
-    // 一个类似 Stack 的 List, 通过 head 判断时间不足时走哪一步, 尾部用于存放当前搜索的局面
+    // 如果时间不够了, 那就返回当前正在搜索的子节点吧
     private int head = 0;
+    // 一个类似 Stack 的 List用于存放当前搜索的局面
     private List<Node> fringe = new ArrayList<>();
     // 当前节点的父节点, 用于判断是否所有子节点都失败了
     private int currentParentIndex = -1;
@@ -85,7 +86,7 @@ public class Agent extends AbstractPlayer {
             // -1 代表是首节点, 没有上一步行动与父节点
             fringe.add(new Node(stateObs, null, -1));
         } else {
-            System.out.println("Continue last search.");
+            System.out.println("Continue last search. Head:" + Integer.toString(head));
         }
 
         // 计时相关的自带代码
@@ -109,12 +110,22 @@ public class Agent extends AbstractPlayer {
             int index = fringe.size() - 1;
             Node node = fringe.get(index);
 
+            // 进入了一个新的子节点的话, 更新一下父结点的子节点索引
+            if (node.parent != -1) {
+                fringe.get(node.parent).child = index;
+            }
+
             // 胜利的相关的处理
             if (node.stObs.isGameOver() && node.stObs.getGameWinner() == Types.WINNER.PLAYER_WINS) {
+                System.out.println("Success to find the path.");
                 Node current = node;
                 while (current.parent != -1) {
                     // 循环加入可行的行动
-                    stObs2Actions.put(fringe.get(current.parent).stObs, current.action);
+                    if (stObs2Actions.containsKey(fringe.get(current.parent).stObs)) {
+                        System.out.println("Error: State already exists.");
+                    } else {
+                        stObs2Actions.put(fringe.get(current.parent).stObs, current.action);
+                    }
                     current = fringe.get(current.parent);
                 }
                 // 返回当前的步骤
@@ -157,10 +168,18 @@ public class Agent extends AbstractPlayer {
             remaining = elapsedTimer.remainingTimeMillis();
         }
 
-        // 时间不够, 没能够搜索完, 那就直接返回头部吧
+        // 时间不够, 没能够搜索完, 那就直接返回当前正在搜索的子节点吧
         System.out.println("Time running out.");
-        head++;
-        return fringe.get(head).action;
+        if (head != -1 && fringe.get(head).child != -1) {
+            head = fringe.get(head).child;
+            return fringe.get(head).action;
+        } else {
+            // 连子节点都还没有获取到, 算了, 随便挑一个返回了吧
+            System.out.println("Fail to get the child node.");
+            ArrayList<Types.ACTIONS> actions = stateObs.getAvailableActions();
+            int index = randomGenerator.nextInt(actions.size());
+            return actions.get(index);
+        }
     }
 
     /**
