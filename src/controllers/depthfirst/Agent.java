@@ -1,6 +1,5 @@
 package controllers.depthfirst;
 
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,7 +18,34 @@ import tools.ElapsedCpuTimer;
  * Created with IntelliJ IDEA. User: ssamot Date: 14/11/13 Time: 21:45 This is a
  * Java port from Tom Schaul's VGDL - https://github.com/schaul/py-vgdl
  */
-public class Agent extends AbstractPlayer {
+public class Agent extends controllers.sampleRandom.Agent {
+
+    class Node {
+        public StateObservation stObs;
+    
+        // 生成这个局面的那一步行动
+        public Types.ACTIONS action = null;
+    
+        // 在 fringe 中的索引
+        public int parent = -1;
+        public int child = -1;
+    
+        Node(StateObservation stObs, Types.ACTIONS action, int parent) {
+            this.stObs = stObs;
+            this.action = action;
+            this.parent = parent;
+        }
+    }
+
+    /**
+     * Public constructor with state observation and time due.
+     * 
+     * @param so           state observation of the current game.
+     * @param elapsedTimer Timer for the controller creation.
+     */
+    public Agent(StateObservation so, ElapsedCpuTimer elapsedTimer) {
+        super(so, elapsedTimer);
+    }
 
     /**
      * Random generator for the agent.
@@ -48,18 +74,6 @@ public class Agent extends AbstractPlayer {
     private List<Node> fringe = new ArrayList<>();
     // 当前节点的父节点, 用于判断是否所有子节点都失败了
     private int currentParentIndex = -1;
-
-    /**
-     * Public constructor with state observation and time due.
-     * 
-     * @param so           state observation of the current game.
-     * @param elapsedTimer Timer for the controller creation.
-     */
-    public Agent(StateObservation so, ElapsedCpuTimer elapsedTimer) {
-        randomGenerator = new Random();
-        grid = so.getObservationGrid();
-        block_size = so.getBlockSize();
-    }
 
     /**
      * Picks an action. This function is called every game step to request an action
@@ -182,41 +196,4 @@ public class Agent extends AbstractPlayer {
         }
     }
 
-    /**
-     * Prints the number of different types of sprites available in the "positions"
-     * array. Between brackets, the number of observations of each type.
-     * 
-     * @param positions array with observations.
-     * @param str       identifier to print
-     */
-    public void printDebug(ArrayList<Observation>[] positions, String str) {
-        if (positions != null) {
-            System.out.print(str + ":" + positions.length + "(");
-            for (int i = 0; i < positions.length; i++) {
-                System.out.print(positions[i].size() + ",");
-            }
-            System.out.print("); ");
-        } else
-            System.out.print(str + ": 0; ");
-    }
-
-    /**
-     * Gets the player the control to draw something on the screen. It can be used
-     * for debug purposes.
-     * 
-     * @param g Graphics device to draw to.
-     */
-    public void draw(Graphics2D g) {
-        int half_block = (int) (block_size * 0.5);
-        for (int j = 0; j < grid[0].length; ++j) {
-            for (int i = 0; i < grid.length; ++i) {
-                if (grid[i][j].size() > 0) {
-                    Observation firstObs = grid[i][j].get(0); // grid[i][j].size()-1
-                    // Three interesting options:
-                    int print = firstObs.category; // firstObs.itype; //firstObs.obsID;
-                    g.drawString(print + "", i * block_size + half_block, j * block_size + half_block);
-                }
-            }
-        }
-    }
 }
