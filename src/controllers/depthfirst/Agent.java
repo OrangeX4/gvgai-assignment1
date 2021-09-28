@@ -47,21 +47,6 @@ public class Agent extends controllers.sampleRandom.Agent {
         super(so, elapsedTimer);
     }
 
-    /**
-     * Random generator for the agent.
-     */
-    protected Random randomGenerator;
-
-    /**
-     * Observation grid.
-     */
-    protected ArrayList<Observation> grid[][];
-
-    /**
-     * block size
-     */
-    protected int block_size;
-
     // 用于判断是否形成回路
     private Set<StateObservation> stateObservationsSet = new HashSet<>();
 
