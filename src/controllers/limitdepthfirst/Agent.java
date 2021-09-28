@@ -13,6 +13,7 @@ import core.game.StateObservation;
 import core.player.AbstractPlayer;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
+import tools.Vector2d;
 
 /**
  * Created with IntelliJ IDEA. User: ssamot Date: 14/11/13 Time: 21:45 This is a
@@ -60,6 +61,10 @@ public class Agent extends controllers.sampleRandom.Agent {
     // 用于保存搜索到的解答, 根据局面获取步骤
     private Map<StateObservation, Types.ACTIONS> stObs2Actions = new HashMap<>();
 
+    private int getDist(Vector2d a, Vector2d b) {
+        return (int) Math.abs(a.x / 50 - b.x / 50) + (int) Math.abs(a.y / 50 - b.y / 50);
+    }
+
     /**
      * heuristic function
      * 
@@ -67,8 +72,19 @@ public class Agent extends controllers.sampleRandom.Agent {
      * @return The heuristic function result.
      */
     private int heuristic(Node node) {
-        // TODO: Return h(node)
-        return 1;
+        StateObservation stObs = node.stObs;
+        ArrayList<Observation>[] fixedPositions = stObs.getImmovablePositions();
+        ArrayList<Observation>[] movingPositions = stObs.getMovablePositions();
+        Vector2d avatarPos = stObs.getAvatarPosition();
+        Vector2d goalPos = fixedPositions[1].get(0).position;
+        if (movingPositions[0].size() != 0) {
+            // 没吃到钥匙, 就返回从当前位置到钥匙位置再到目标位置的距离
+            Vector2d keyPos = movingPositions[0].get(0).position;
+            return getDist(avatarPos, keyPos) + getDist(keyPos, goalPos);
+        } else {
+            // 吃到钥匙, 就返回从当前位置到目标位置的距离
+            return getDist(avatarPos, goalPos);
+        }
     }
 
 
@@ -161,7 +177,7 @@ public class Agent extends controllers.sampleRandom.Agent {
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
         // 最大深度限制
-        int limit = 10;
+        int limit = 5;
 
         // 如果已经有了可以走的路径, 获取保存的路径并返回就好
         if (stObs2Actions.containsKey(stateObs)) {
