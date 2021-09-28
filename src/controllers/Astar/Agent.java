@@ -110,7 +110,6 @@ public class Agent extends controllers.sampleRandom.Agent {
      * @return An random action for the current state
      */
     private Types.ACTIONS pickupGreedyAction(StateObservation stateObs) {
-        // 找不到了, 随便返回一个吧
         System.out.println("Pickup greedy action.");
         int currentHeuristics = -1;
         Types.ACTIONS currentAction = null; 
@@ -128,6 +127,8 @@ public class Agent extends controllers.sampleRandom.Agent {
         }
         return currentAction;
     }
+
+    private int count = 0;
 
     /**
      * Picks an action. This function is called every game step to request an action
@@ -155,6 +156,12 @@ public class Agent extends controllers.sampleRandom.Agent {
 
         while (remaining > 2 * avgTimeTaken && remaining > remainingLimit) {
             ElapsedCpuTimer elapsedTimerIteration = new ElapsedCpuTimer();
+
+            // 输出次数, 用于统计
+            count++;
+            if (count % 100 == 0) {
+                System.out.println("Count: " + count);
+            }
 
             if (fringe.size() == 0) {
                 System.out.println("Failed to find the path.");

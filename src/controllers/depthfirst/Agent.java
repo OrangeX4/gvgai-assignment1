@@ -60,6 +60,8 @@ public class Agent extends controllers.sampleRandom.Agent {
     // 当前节点的父节点, 用于判断是否所有子节点都失败了
     private int currentParentIndex = -1;
 
+    private int count = 0;
+
     /**
      * Picks an action. This function is called every game step to request an action
      * from the player.
@@ -97,6 +99,12 @@ public class Agent extends controllers.sampleRandom.Agent {
 
         while (remaining > 2 * avgTimeTaken && remaining > remainingLimit) {
             ElapsedCpuTimer elapsedTimerIteration = new ElapsedCpuTimer();
+
+            // 输出次数, 用于统计
+            count++;
+            if (count % 100 == 0) {
+                System.out.println("Count: " + count);
+            }
 
             // 失败了, 找不到可行方案, 随便返回一个吧
             if (fringe.size() - head == 0) {
