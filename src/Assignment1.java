@@ -31,6 +31,7 @@ public class Assignment1 {
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl0.txt", visuals, depthfirstController, null, seed, false);
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl1.txt", visuals, depthfirstController, null, seed, false);
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl2.txt", visuals, depthfirstController, null, seed, false);
+        // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl3.txt", visuals, depthfirstController, null, seed, false);
         
         
         /****** Task 2 ******/

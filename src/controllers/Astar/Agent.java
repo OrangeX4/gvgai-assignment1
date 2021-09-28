@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import core.game.Observation;
 import core.game.StateObservation;
@@ -110,9 +111,8 @@ public class Agent extends controllers.sampleRandom.Agent {
      * @return An random action for the current state
      */
     private Types.ACTIONS pickupGreedyAction(StateObservation stateObs) {
-        System.out.println("Pickup greedy action.");
         int currentHeuristics = -1;
-        Types.ACTIONS currentAction = null; 
+        Types.ACTIONS currentAction = null;
         for (Types.ACTIONS action : stateObs.getAvailableActions()) {
             StateObservation stateCpy = stateObs.copy();
             stateCpy.advance(action);
@@ -123,8 +123,9 @@ public class Agent extends controllers.sampleRandom.Agent {
             if (currentHeuristics == -1 || result < currentHeuristics) {
                 currentHeuristics = result;
                 currentAction = action;
-            } 
+            }
         }
+        System.out.println("Pickup greedy action: " + currentAction.toString());
         return currentAction;
     }
 
@@ -168,7 +169,15 @@ public class Agent extends controllers.sampleRandom.Agent {
                 return pickupGreedyAction(stateObs);
             }
 
+            // 关键, 从优先级队列里取出当前要计算的节点
             Node node = fringe.remove();
+
+            // 输出当前层数, 用于统计
+            if (count < 50) {
+                System.out.println("Depth: " + node.cost + "    Total: " + (node.cost + node.heuristics)
+                        + "    Remaining: "
+                        + fringe.stream().map((n) -> n.cost + n.heuristics).collect(Collectors.toList()).toString());
+            }
 
             // if success
             if (node.stObs.isGameOver() && node.stObs.getGameWinner() == Types.WINNER.PLAYER_WINS) {
