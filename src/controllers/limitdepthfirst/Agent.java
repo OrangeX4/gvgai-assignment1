@@ -61,6 +61,18 @@ public class Agent extends controllers.sampleRandom.Agent {
     private Map<StateObservation, Types.ACTIONS> stObs2Actions = new HashMap<>();
 
     /**
+     * heuristic function
+     * 
+     * @param node  The node.
+     * @return The heuristic function result.
+     */
+    private int heuristic(Node node) {
+        // TODO: Return h(node)
+        return 1;
+    }
+
+
+    /**
      * depth limited search recursively
      * 
      * @param node  The current node.
@@ -71,8 +83,6 @@ public class Agent extends controllers.sampleRandom.Agent {
 
         // Init cutoffNode
         Node cutoffNode = null;
-
-        System.out.println("Current depth: " + node.depth);
 
         // if success
         if (node.stObs.isGameOver() && node.stObs.getGameWinner() == Types.WINNER.PLAYER_WINS) {
@@ -97,8 +107,7 @@ public class Agent extends controllers.sampleRandom.Agent {
         } else if (node.depth == limit) {
             // Add to closed set
             stateObservationsSet.add(node.stObs);
-            // TODO: Return h(node)
-            node.cutoff = 1;
+            node.cutoff = heuristic(node);
             return node;
         } else {
             // Add to closed set
@@ -152,7 +161,7 @@ public class Agent extends controllers.sampleRandom.Agent {
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
 
         // 最大深度限制
-        int limit = 11;
+        int limit = 10;
 
         // 如果已经有了可以走的路径, 获取保存的路径并返回就好
         if (stObs2Actions.containsKey(stateObs)) {
@@ -182,7 +191,7 @@ public class Agent extends controllers.sampleRandom.Agent {
             } else {
                 // 返回可以拿到最高分的一个
                 Node current = result;
-                while (!current.stObs.equalPosition(stateObs)) {
+                while (!current.parent.stObs.equalPosition(stateObs)) {
                     if (current.parent != null) {
                         current = current.parent;
                     } else {
