@@ -42,7 +42,7 @@ public class Assignment1 {
         /****** Task 3 ******/
         CompetitionParameters.ACTION_TIME = 100; // no time for finding the whole path
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl0.txt", visuals, AstarController, null, seed, false);
-        ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl1.txt", visuals, AstarController, null, seed, false);
+        // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl1.txt", visuals, AstarController, null, seed, false);
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl2.txt", visuals, AstarController, null, seed, false);
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl3.txt", visuals, AstarController, null, seed, false);
         // ArcadeMachine.runOneGame("examples/gridphysics/bait.txt", "examples/gridphysics/bait_lvl4.txt", visuals, AstarController, null, seed, false);
